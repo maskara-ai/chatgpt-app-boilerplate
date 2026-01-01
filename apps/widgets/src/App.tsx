@@ -1,8 +1,8 @@
 import { useMemo } from "react";
-import { useOpenAiGlobal } from "./hooks/use-openai-global";
-import { useWidgetState } from "./hooks/use-widget-state";
-import type { ToDoContent, ToDoWidgetState } from "./types/todo";
-import { TodoContainer } from "./components/TodoContainer";
+import { useOpenAiGlobal } from "@/hooks/use-openai-global";
+import { useWidgetState } from "@/hooks/use-widget-state";
+import type { ToDoContent, ToDoWidgetState } from "@/types/todo";
+import { TodoContainer } from "@/components/TodoContainer";
 
 function App() {
   const toolOutput = (useOpenAiGlobal("toolOutput") ??

@@ -50,7 +50,7 @@ export async function startServer(): Promise<McpServer> {
 
   app.all(mcpEndpoint, (req: Request, res: Response) => {
     transport.handleRequest(req, res, req.body).catch((err: unknown) => {
-      logger.error("Error in transport.handleRequest: + " + err);
+      logger.error("Error in transport.handleRequest: " + err);
       if (!res.headersSent) {
         res.status(500).json({
           error: "Internal Server Error",

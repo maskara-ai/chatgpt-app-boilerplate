@@ -1,4 +1,4 @@
-import type { Todo } from "../../types/todo";
+import type { Todo } from "@/types/todo";
 import { Checkbox } from "@openai/apps-sdk-ui/components/Checkbox";
 
 type TodoContainerProps = {
