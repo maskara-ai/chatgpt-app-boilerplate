@@ -18,6 +18,7 @@ export default function TodoContainer({
             <Checkbox
               onCheckedChange={() => onToggleComplete(todo.id)}
               label={todo.title}
+              checked={todo.completed}
             />
           </li>
         ))}
