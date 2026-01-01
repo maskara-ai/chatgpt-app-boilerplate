@@ -23,6 +23,7 @@ describe("TodoContainer", () => {
       <TodoContainer
         todos={mockTodos}
         onToggleComplete={mockOnToggleComplete}
+        isLoading={false}
       />
     );
 
@@ -36,6 +37,7 @@ describe("TodoContainer", () => {
       <TodoContainer
         todos={mockTodos}
         onToggleComplete={mockOnToggleComplete}
+        isLoading={false}
       />
     );
 
@@ -52,6 +54,7 @@ describe("TodoContainer", () => {
       <TodoContainer
         todos={mockTodos}
         onToggleComplete={mockOnToggleComplete}
+        isLoading={false}
       />
     );
 
@@ -64,7 +67,7 @@ describe("TodoContainer", () => {
 
   test("displays 'No todos yet' when todos array is empty", () => {
     render(
-      <TodoContainer todos={[]} onToggleComplete={mockOnToggleComplete} />
+      <TodoContainer todos={[]} onToggleComplete={mockOnToggleComplete} isLoading={false} />
     );
 
     expect(screen.getByText("No todos yet")).toBeInTheDocument();
@@ -76,6 +79,7 @@ describe("TodoContainer", () => {
       <TodoContainer
         todos={mockTodos}
         onToggleComplete={mockOnToggleComplete}
+        isLoading={false}
       />
     );
 
@@ -88,6 +92,7 @@ describe("TodoContainer", () => {
       <TodoContainer
         todos={mockTodos}
         onToggleComplete={mockOnToggleComplete}
+        isLoading={false}
       />
     );
 
