@@ -29,6 +29,11 @@ async function handleAddTodo(args: { title: string }): Promise<CallToolResult> {
   const title = args.title.trim();
   if (!title) return replyWithTodos("Missing title.");
   const todo = { id: `todo-${nextId++}`, title, completed: false };
+  // Temporary workaround to avoid adding duplicate todos
+  // https://github.com/openai/openai-apps-sdk-examples/issues/171
+  if (todos.some((t) => t.title === title)) {
+    return replyWithTodos(`Todo "${title}" already exists.`);
+  }
   todos = [...todos, todo];
   return replyWithTodos(`Added "${todo.title}".`);
 }

@@ -9,5 +9,5 @@ export type ToDoContent = {
 };
 
 export type ToDoWidgetState = {
-  status: "idle" | "loading" | "success" | "error";
+  status: "idle" | "loading" | "error";
 };

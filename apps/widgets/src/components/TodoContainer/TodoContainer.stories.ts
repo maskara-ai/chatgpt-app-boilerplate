@@ -29,12 +29,14 @@ const sampleTodos: Todo[] = [
 export const Default: Story = {
   args: {
     todos: sampleTodos,
+    isLoading: false,
   },
 };
 
 export const Empty: Story = {
   args: {
     todos: [],
+    isLoading: false,
   },
 };
 
@@ -45,6 +47,7 @@ export const AllCompleted: Story = {
       { id: "2", title: "Task 2", completed: true },
       { id: "3", title: "Task 3", completed: true },
     ],
+    isLoading: false,
   },
 };
 
@@ -55,11 +58,20 @@ export const AllUncompleted: Story = {
       { id: "2", title: "Task 2", completed: false },
       { id: "3", title: "Task 3", completed: false },
     ],
+    isLoading: false,
   },
 };
 
 export const SingleTodo: Story = {
   args: {
     todos: [{ id: "1", title: "Single todo item", completed: false }],
+    isLoading: false,
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    todos: sampleTodos,
+    isLoading: true,
   },
 };
