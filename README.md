@@ -28,7 +28,7 @@ pnpm dev
 
 This will start:
 
-- MCP server (default: `http://localhost:3001`)
+- MCP server (default: `http://localhost:3002`)
 - Widgets development server with Vite (default: `http://localhost:5173`)
 
 ### Running Individual Apps
@@ -40,12 +40,12 @@ cd apps/mcp-server
 pnpm dev
 ```
 
-The MCP server will start on `http://localhost:3001` (or the port specified in the `PORT` environment variable).
+The MCP server will start on `http://localhost:3002` (or the port specified in the `PORT` environment variable).
 
 Use ngrok in order to connect to OpenAI:
 
 ```bash
-ngrok http 3001
+ngrok http 3002
 ```
 
 #### Widgets with Storybook (local testing)
