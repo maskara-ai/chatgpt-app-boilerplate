@@ -1,16 +1,23 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { VERSION, PACKAGE_NAME, DEFAULT_PORT } from "./utils/constants.js";
+import { VERSION, PACKAGE_NAME } from "./utils/constants.js";
 import type { Request, Response } from "express";
 import express from "express";
 import cors from "cors";
-
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import loadedEnv from "@repo/env";
 import todoTools from "./tools/todo-tools.js";
 import logger from "./utils/logger.js";
 import todoResources from "./resources/todo-resources.js";
 
-const PORT = Number(process.env.PORT ?? DEFAULT_PORT);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const APPS_DIR = path.resolve(__dirname, "..", "..");
+
+const baseUrl = new URL(loadedEnv.CAB_MCP_SERVER_BASE_URL);
+
+const PORT = Number(baseUrl.port);
 
 let serverInstance: McpServer | null = null;
 let transportInstance:
@@ -63,10 +70,12 @@ export async function startServer(): Promise<McpServer> {
     res.send(`Boilerplate MCP Server v${VERSION} is running`);
   });
 
+  app.use("/static", express.static(path.join(APPS_DIR, "widgets/dist")));
+
   await new Promise<void>((resolve) => {
     app.listen(PORT, () => {
       logger.info(
-        `HTTP transport listening on http://localhost:${PORT}${mcpEndpoint}`
+        `HTTP transport listening on ${baseUrl.origin}${mcpEndpoint}`
       );
       resolve();
     });

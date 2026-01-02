@@ -10,7 +10,7 @@ A simple Express server application.
 pnpm dev
 ```
 
-The server will start on `http://localhost:3001` (or the port specified in the `PORT` environment variable).
+The server will start on `http://localhost:3002` (or the port specified in the `PORT` environment variable).
 
 ### Build
 
@@ -31,4 +31,3 @@ pnpm start
 - `start` - Start the production server
 - `lint` - Run ESLint
 - `check-types` - Type check without emitting files
-
