@@ -7,7 +7,7 @@
     "test": "vitest run",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "dev": "concurrently \"vite build --watch\" \"serve -s ./dist -p 4444 --cors\" \"vite\"",
+    "dev": "concurrently \"vite build --watch\" \"vite\"",
     "build": "tsc -b && vite build",
     "lint": "eslint . --fix --max-warnings 0",
     "preview": "vite preview"
@@ -20,7 +20,8 @@
     "@tailwindcss/vite": "4.1.11",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "tailwindcss": "4.1.11"
+    "tailwindcss": "4.1.11",
+    "@repo/env": "workspace:*"
   },
   "devDependencies": {
     "@storybook/react-vite": "^10.1.10",
@@ -35,7 +36,6 @@
     "eslint": "9.39.2",
     "globals": "^16.5.0",
     "jsdom": "27.4.0",
-    "serve": "11.3.0",
     "storybook": "^10.1.10",
     "typescript": "5.9.3",
     "vite": "7.3.0",
