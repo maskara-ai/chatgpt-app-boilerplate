@@ -7,17 +7,16 @@ import express from "express";
 import cors from "cors";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import loadedEnv from "@repo/env";
 import todoTools from "./tools/todo-tools.js";
 import logger from "./utils/logger.js";
 import todoResources from "./resources/todo-resources.js";
+import dotenv from "dotenv";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const APPS_DIR = path.resolve(__dirname, "..", "..");
+dotenv.config({ path: path.resolve(__dirname, "..", "..", "..", ".env") });
 
-const baseUrl = new URL(loadedEnv.CAB_MCP_SERVER_BASE_URL);
-
-const PORT = Number(baseUrl.port);
+const PORT = Number(process.env.CAB_MCP_SERVER_PORT || 3002);
 
 let serverInstance: McpServer | null = null;
 let transportInstance:
@@ -70,12 +69,24 @@ export async function startServer(): Promise<McpServer> {
     res.send(`Boilerplate MCP Server v${VERSION} is running`);
   });
 
+  app.get("/health", (_req: Request, res: Response) => {
+    res.status(200).json({
+      status: "healthy",
+      service: PACKAGE_NAME,
+      version: VERSION,
+    });
+  });
+
+  app.get("/favicon.ico", (_req: Request, res: Response) => {
+    res.sendFile(path.join(__dirname, "assets", "favicon.ico"));
+  });
+
   app.use("/static", express.static(path.join(APPS_DIR, "widgets/dist")));
 
   await new Promise<void>((resolve) => {
     app.listen(PORT, () => {
       logger.info(
-        `HTTP transport listening on ${baseUrl.origin}${mcpEndpoint}`
+        `HTTP transport listening on ${process.env.CAB_MCP_SERVER_BASE_URL}:${process.env.CAB_MCP_SERVER_PORT}${mcpEndpoint}`
       );
       resolve();
     });
