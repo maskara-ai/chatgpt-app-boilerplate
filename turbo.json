@@ -6,7 +6,7 @@
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**"],
-      "env": ["CAB_MCP_SERVER_BASE_URL"]
+      "env": ["CAB_MCP_SERVER_BASE_URL", "CAB_MCP_SERVER_PORT"]
     },
     "lint": {
       "dependsOn": ["^lint"]
@@ -17,7 +17,7 @@
     "dev": {
       "cache": false,
       "persistent": true,
-      "env": ["PINO_LOG_LEVEL", "DEBUG", "PORT", "CAB_MCP_SERVER_BASE_URL"]
+      "env": ["PINO_LOG_LEVEL", "DEBUG", "PORT", "CAB_MCP_SERVER_BASE_URL", "CAB_MCP_SERVER_PORT"]
     }
   }
 }
